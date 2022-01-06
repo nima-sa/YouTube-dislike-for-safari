@@ -21,7 +21,9 @@
 
     "content_scripts": [{
         "js": [ "content.js" ],
-        "matches": [ "*://example.com/*" ]
+        "matches": [ "*://*.youtube.com/*" ],
+        "exclude": [
+            "*://music.youtube.com/*", "*://*.music.youtube.com/*"]
     }],
 
     "browser_action": {
