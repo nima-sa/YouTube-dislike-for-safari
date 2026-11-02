@@ -12,7 +12,7 @@ REPO='skar404/youtube-dislike-for-safari'
 ASSETS={'YouTube-Dislike.ipa','YouTube-Dislike-macOS.pkg','YouTube-Dislike-macOS.zip','build-manifest.json','SHA256SUMS'}
 
 def tag_name(tag):
-    core.require(isinstance(tag,str) and re.fullmatch(r'v[1-9]\d*\.(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)',tag), 'Invalid release tag')
+    core.require(isinstance(tag,str) and re.fullmatch(r'v[1-9]\d*\.(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)(?:-build\.[1-9]\d*)?',tag), 'Invalid release tag')
     return tag
 
 @contextmanager
@@ -26,6 +26,12 @@ def signature(kind,ref,env):
     p=subprocess.run(['git','-c','gpg.format=openpgp','-c','gpg.program=gpg','verify-'+kind,'--raw',ref],cwd=core.ROOT,env=env,capture_output=True)
     lines=[line.split() for line in p.stderr.decode().splitlines() if line.startswith('[GNUPG:] VALIDSIG ')]
     core.require(p.returncode==0 and any(core.policy()['signing_fingerprint'] in (line[2],line[-1]) for line in lines),'Untrusted '+kind+' signature')
+
+def verify_tag_version(tag, tagged, current):
+    tag_name(tag)
+    allowed = {'v' + tagged['version'], 'v' + tagged['version'] + '-build.' + tagged['build']}
+    core.require(tag in allowed and tagged['version'] == current['version'] and tagged['build'] == current['build'],
+                 'Tag/version/build mismatch')
 
 def verify_source(tag,commit):
     tag_name(tag)
@@ -41,7 +47,7 @@ def verify_source(tag,commit):
     with keyring() as env:
         signature('tag',ref,env); signature('commit',commit,env)
     p=json.loads(core.git('show',commit+':release/policy.json',capture=True))
-    core.require(tag=='v'+p['version'] and p['build']==core.policy()['build'],'Tag/version/build mismatch')
+    verify_tag_version(tag,p,core.policy())
     return p
 
 def verify(a):

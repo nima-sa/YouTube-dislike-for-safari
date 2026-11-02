@@ -39,6 +39,9 @@ jobs:
           assert run.isdigit()
           source = json.loads(subprocess.check_output(['gh','api',f'repos/{os.environ["GITHUB_REPOSITORY"]}/actions/runs/{run}']))
           policy = json.load(open('release/policy.json'))
-          subprocess.run(['python3','scripts/release.py','publish','--tag','v'+policy['version'],
+          tag = 'v' + policy['version'] + '-build.' + policy['build']
+          exists = subprocess.run(['git','show-ref','--verify','--quiet','refs/tags/'+tag]).returncode == 0
+          if not exists: tag = 'v' + policy['version']
+          subprocess.run(['python3','scripts/release.py','publish','--tag',tag,
                           '--commit',source['head_sha'],'--source-run',run],check=True)
           PY

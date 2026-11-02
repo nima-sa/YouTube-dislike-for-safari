@@ -45,6 +45,15 @@ class Safety(unittest.TestCase):
             with self.assertRaises(RuntimeError): automation.tag_name(tag)
         self.assertEqual(automation.tag_name('v2026.11.1'),'v2026.11.1')
 
+    def test_tag_version_and_build(self):
+        p = {'version': '2026.11.1', 'build': '3'}
+        for tag in ['v2026.11.1', 'v2026.11.1-build.3']:
+            automation.verify_tag_version(tag, p, p)
+        for tag in ['v2026.11.1-build.4', 'v2026.11.2-build.3', 'v2026.11.1-build.03']:
+            with self.assertRaises(RuntimeError): automation.verify_tag_version(tag, p, p)
+        with self.assertRaises(RuntimeError):
+            automation.verify_tag_version('v2026.11.1-build.3', p, {**p, 'version': '2026.11.2'})
+
     def test_invalid_signature(self):
         from subprocess import CompletedProcess
         for returncode,stderr in [(1,b''),(0,b'[GNUPG:] VALIDSIG OTHER 1 2 OTHER')]:

@@ -89,7 +89,7 @@ class MacSigning(Signing):
         core.run('codesign', '--verify', '--deep', '--strict', app)
         core.run('spctl', '--assess', '--type', 'execute', app)
         # Stapling changes bytes; only package/hash/attest the final stapled app.
-        artifact = output / 'public/Slowth-macOS.zip'
+        artifact = output / 'public/YouTube-Dislike-macOS.zip'
         core.run('ditto', '-c', '-k', '--keepParent', app, artifact)
         return {'name': artifact.name, 'sha256': core.sha(artifact), 'notarization_status': result['status'],
                 'notarization_id': result['id'], 'architectures': ['arm64', 'x86_64'],
