@@ -82,8 +82,8 @@ YouTube and, if requested, the RYD API. Open YouTube **in Safari**; extensions d
 not run inside the native YouTube app. The containing app includes these steps.
 
 Version is **2026.11.1 (3)**. Both containing apps use `page.malina.youtube-dislike`;
-Safari extensions use `.macos.extension` and `.ios.extension`, and the share extension
-uses `.ios.share`. New IDs install separately from the old development apps; local
+Safari extensions use `.macos-extension` and `.ios-extension`, and the share extension
+uses `.ios-share`. New IDs install separately from the old development apps; local
 extension data does not migrate. No developer team is committed. For local signing,
 copy `Configs/Local.xcconfig.example` to the ignored `Configs/Local.xcconfig` and pass
 it with `-xcconfig`. CI supplies signing settings only in its protected environment.

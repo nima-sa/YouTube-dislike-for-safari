@@ -26,6 +26,12 @@ def sha(path):
 def policy():
     return json.loads((ROOT / 'release/policy.json').read_text())
 
+def validate_extension_id(app_id, extension_id):
+    require(extension_id.startswith(app_id + '.') and
+            re.fullmatch(r'[A-Za-z0-9-]+', extension_id[len(app_id) + 1:]),
+            'Extension ID must append exactly one bundle identifier component')
+
+
 def versions():
     p = policy()
     project = (ROOT / 'YouTube Dislike.xcodeproj/project.pbxproj').read_text()
@@ -34,10 +40,13 @@ def versions():
         require(len(found) == 10 and set(found) == {value}, 'Inconsistent '+key)
     manifest = json.loads((ROOT / 'YouTube Dislike Extension/Resources/manifest.json').read_text())
     require(manifest['version'] == p['version'], 'WebExtension version differs')
-    expected = {'page.malina.youtube-dislike':4, 'page.malina.youtube-dislike.macos.extension':2,
-                'page.malina.youtube-dislike.ios.extension':2, 'page.malina.youtube-dislike.ios.share':2}
+    expected = {'page.malina.youtube-dislike':4, 'page.malina.youtube-dislike.macos-extension':2,
+                'page.malina.youtube-dislike.ios-extension':2, 'page.malina.youtube-dislike.ios-share':2}
     ids = re.findall(r'PRODUCT_BUNDLE_IDENTIFIER = "([^"]+)";',project)
     require({v:ids.count(v) for v in ids} == expected, 'Bundle identifiers differ')
+    for bundle_id in expected:
+        if bundle_id != 'page.malina.youtube-dislike':
+            validate_extension_id('page.malina.youtube-dislike', bundle_id)
     require(not re.search(r'DEVELOPMENT_TEAM = [A-Z0-9]+;',project), 'Public development team forbidden')
     return p['version'],p['build']
 

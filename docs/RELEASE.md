@@ -8,7 +8,7 @@ State: release preparation; signed-source checks enforced. No App Review submiss
 
 The planned runner is `xcode-27` with `/Applications/Xcode_27.0.app/Contents/Developer`, matching the current Slowth workflow. Runner availability must be verified by a successful GitHub run. Local Xcode 27.1 results do not establish that.
 
-Local signing: copy `Configs/Local.xcconfig.example` to the ignored `Configs/Local.xcconfig`, set a team and pass `-xcconfig Configs/Local.xcconfig` to xcodebuild. Never publish that file. Both apps use `page.malina.youtube-dislike`; the extension IDs end in `.macos.extension`, `.ios.extension`, `.ios.share`. These install separately from the old development IDs; extension data does not migrate automatically.
+Local signing: copy `Configs/Local.xcconfig.example` to the ignored `Configs/Local.xcconfig`, set a team and pass `-xcconfig Configs/Local.xcconfig` to xcodebuild. Never publish that file. Both apps use `page.malina.youtube-dislike`; the extension IDs end in `.macos-extension`, `.ios-extension`, `.ios-share`. These install separately from the old development IDs; extension data does not migrate automatically.
 
 ## Release sequence
 

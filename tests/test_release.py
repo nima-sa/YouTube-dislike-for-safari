@@ -62,6 +62,13 @@ class Safety(unittest.TestCase):
         for private in ['secret-path', 'KEYVALUE', 'person@example.org']:
             self.assertNotIn(private, result)
 
+    def test_extension_identifier_has_one_suffix_component(self):
+        app = 'page.malina.youtube-dislike'
+        for suffix in ['ios-extension', 'ios-share', 'macos-extension']:
+            core.validate_extension_id(app, app + '.' + suffix)
+        for bad in [app + '.ios.extension', app + '.ios.share', app + '.', 'other.extension']:
+            with self.assertRaises(RuntimeError): core.validate_extension_id(app, bad)
+
     def test_versions(self):
         self.assertEqual(core.versions(),('2026.11.1','3'))
 

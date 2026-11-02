@@ -16,8 +16,8 @@ from .macos_store import MacStoreSigning
 def validate_bundles(app,version,build,identity):
     records=[]
     mac=(app/'Contents').is_dir()
-    expected={'page.malina.youtube-dislike', 'page.malina.youtube-dislike.macos.extension'} if mac else {
-        'page.malina.youtube-dislike','page.malina.youtube-dislike.ios.extension','page.malina.youtube-dislike.ios.share'}
+    expected={'page.malina.youtube-dislike', 'page.malina.youtube-dislike.macos-extension'} if mac else {
+        'page.malina.youtube-dislike','page.malina.youtube-dislike.ios-extension','page.malina.youtube-dislike.ios-share'}
     for bundle in [app,*sorted(app.rglob('*.appex'))]:
         content=bundle/'Contents' if mac else bundle
         info=plistlib.loads((content/'Info.plist').read_bytes())

@@ -35,7 +35,7 @@ def upload_failure_summary(output):
     # Only emit recognized diagnostics, never the raw Apple response or paths.
     text = output.decode('utf-8', errors='replace')
     facts = []
-    for phrase in ['Asset validation failed', 'Invalid large app icon', 'Invalid Icon',
+    for phrase in ['Bad bundle identifier', 'Asset validation failed', 'Invalid large app icon', 'Invalid Icon',
                    'Missing required icon file', 'alpha channel', 'transparency',
                    'Missing Info.plist value', 'Invalid Bundle', 'Invalid bundle',
                    'Failed to load AuthKey file', 'Authentication failed', 'Unauthorized',
@@ -239,6 +239,23 @@ class Signing:
                             and not ent.get('get-task-allow'), 'Exported iOS entitlements differ')
         return ipas[0]
 
+    def upload_diagnostics(self, build):
+        summaries = []
+        page = self.api(f'/v1/apps/{self.app_id}/buildUploads?limit=200')
+        for item in page['data']:
+            attrs = item['attributes']
+            if (attrs.get('platform'), attrs.get('cfBundleShortVersionString'), attrs.get('cfBundleVersion')) != (self.platform, self.version, build):
+                continue
+            files = self.api('/v1/buildUploads/' + item['id'] + '/buildUploadFiles')
+            for file in files['data']:
+                state = file['attributes'].get('assetDeliveryState') or {}
+                for error in state.get('errors', []):
+                    code = str(error.get('code', ''))
+                    if not re.fullmatch(r'[A-Z0-9_.-]{1,80}', code): code = 'unknown'
+                    summary = code + ': ' + upload_failure_summary(error.get('description', '').encode())
+                    if summary not in summaries: summaries.append(summary)
+        return '; '.join(summaries)
+
     def upload(self, ipa, build):
         before = release.sha(ipa)
         # Apple's altool shim can update independently of Xcode. New versions use
@@ -248,8 +265,11 @@ class Signing:
         result = subprocess.run(['xcrun', 'altool', '--upload-app', '-f', str(ipa), *auth],
                                 stdout=subprocess.PIPE, stderr=subprocess.PIPE,
                                 env=dict(os.environ, API_PRIVATE_KEYS_DIR=str(self.directory)))
-        release.require(result.returncode == 0,
-                        f'Apple {self.platform} upload failed: ' + upload_failure_summary(result.stdout + result.stderr))
+        if result.returncode:
+            summary = upload_failure_summary(result.stdout + result.stderr)
+            try: summary += '; ' + self.upload_diagnostics(build)
+            except Exception: summary += '; Apple upload diagnostics unavailable'
+            raise RuntimeError(f'Apple {self.platform} upload failed: ' + summary)
         release.require(release.sha(ipa) == before, 'Artifact changed during upload')
         path = '/v1/builds?' + urllib.parse.urlencode({'filter[app]': self.app_id,
                                                      'filter[version]': build,

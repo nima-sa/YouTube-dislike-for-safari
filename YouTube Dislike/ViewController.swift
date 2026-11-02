@@ -2,7 +2,7 @@ import Cocoa
 import SafariServices
 import WebKit
 
-private let extensionBundleIdentifier = "page.malina.youtube-dislike.macos.extension"
+private let extensionBundleIdentifier = "page.malina.youtube-dislike.macos-extension"
 
 final class ViewController: NSViewController, WKNavigationDelegate, WKScriptMessageHandler {
     @IBOutlet private var webView: WKWebView!

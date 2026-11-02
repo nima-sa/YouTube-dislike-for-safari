@@ -627,7 +627,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 2026.11.1;
-				PRODUCT_BUNDLE_IDENTIFIER = "page.malina.youtube-dislike.ios.extension";
+				PRODUCT_BUNDLE_IDENTIFIER = "page.malina.youtube-dislike.ios-extension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -777,7 +777,7 @@
 					"-framework",
 					SafariServices,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "page.malina.youtube-dislike.macos.extension";
+				PRODUCT_BUNDLE_IDENTIFIER = "page.malina.youtube-dislike.macos-extension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -808,7 +808,7 @@
 					"-framework",
 					SafariServices,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "page.malina.youtube-dislike.macos.extension";
+				PRODUCT_BUNDLE_IDENTIFIER = "page.malina.youtube-dislike.macos-extension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -831,6 +831,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "YouTube Dislike";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSMainStoryboardFile = Main;
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -867,6 +868,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "YouTube Dislike";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSMainStoryboardFile = Main;
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -933,7 +935,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = "YouTube Dislike";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MARKETING_VERSION = 2026.11.1;
-				PRODUCT_BUNDLE_IDENTIFIER = "page.malina.youtube-dislike.ios.share";
+				PRODUCT_BUNDLE_IDENTIFIER = "page.malina.youtube-dislike.ios-share";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -962,7 +964,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 2026.11.1;
-				PRODUCT_BUNDLE_IDENTIFIER = "page.malina.youtube-dislike.ios.extension";
+				PRODUCT_BUNDLE_IDENTIFIER = "page.malina.youtube-dislike.ios-extension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -986,7 +988,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = "YouTube Dislike";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MARKETING_VERSION = 2026.11.1;
-				PRODUCT_BUNDLE_IDENTIFIER = "page.malina.youtube-dislike.ios.share";
+				PRODUCT_BUNDLE_IDENTIFIER = "page.malina.youtube-dislike.ios-share";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
