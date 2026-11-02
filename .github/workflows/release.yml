@@ -103,3 +103,16 @@ jobs:
       - name: Clean private outputs
         if: always()
         run: rm -rf "$RUNNER_TEMP/release-output"
+
+  publish-handoff:
+    needs: build
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    permissions:
+      contents: read
+      actions: write
+    steps:
+      - name: Dispatch credential-free publication
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run publish.yml --repo "$GITHUB_REPOSITORY" --ref main -f "source_run=$GITHUB_RUN_ID"

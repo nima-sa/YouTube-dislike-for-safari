@@ -1,8 +1,5 @@
 name: Publish verified release
 on:
-  workflow_run:
-    workflows: ['Signed release build']
-    types: [completed]
   workflow_dispatch:
     inputs:
       source_run:
@@ -16,7 +13,7 @@ concurrency:
   cancel-in-progress: false
 jobs:
   publish:
-    if: github.ref == 'refs/heads/main' && (github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success')
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-24.04
     timeout-minutes: 15
     permissions:
@@ -31,8 +28,9 @@ jobs:
       - name: Verify source run and publish
         env:
           GH_TOKEN: ${{ github.token }}
-          SOURCE_RUN: ${{ inputs.source_run || github.event.workflow_run.id }}
+          SOURCE_RUN: ${{ inputs.source_run }}
         run: |
+          gh run watch "$SOURCE_RUN" --repo "$GITHUB_REPOSITORY" --exit-status --interval 10
           python3 - <<'PY'
           import json, os, subprocess
           run = os.environ['SOURCE_RUN']
