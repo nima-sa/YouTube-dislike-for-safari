@@ -31,6 +31,33 @@ def quiet(*args, env=None):
     return result.stdout
 
 
+def upload_failure_summary(output):
+    # Only emit recognized diagnostics, never the raw Apple response or paths.
+    text = output.decode('utf-8', errors='replace')
+    facts = []
+    for phrase in ['Asset validation failed', 'Invalid large app icon', 'Invalid Icon',
+                   'Missing required icon file', 'alpha channel', 'transparency',
+                   'Missing Info.plist value', 'Invalid Bundle', 'Invalid bundle',
+                   'Failed to load AuthKey file', 'Authentication failed', 'Unauthorized',
+                   'already been uploaded', 'bundle version must be higher',
+                   'No suitable application records were found', 'Invalid Provisioning Profile',
+                   'Invalid Signature', 'Unable to upload', 'Connection timed out']:
+        if phrase.lower() in text.lower(): facts.append(phrase)
+    facts += sorted(set(re.findall(r'\bITMS-\d{4,6}\b|\bCFBundle[A-Za-z]+\b|\bLSApplicationCategoryType\b', text)))
+    facts += ['code ' + code for code in sorted(set(re.findall(r'\((-\d{2,6})\)', text)))]
+    return '; '.join(facts) or 'Unclassified Apple upload error; raw response withheld'
+
+
+def altool_auth(key_id, issuer, platform):
+    result = subprocess.run(['xcrun', 'altool', '--help'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    release.require(result.returncode == 0, 'altool capability detection failed')
+    help_text = result.stdout + result.stderr
+    if b'--api-key <' in help_text:
+        return ['--api-key', key_id, '--api-issuer', issuer]
+    release.require(b'--apiKey' in help_text and b'--type' in help_text, 'Unrecognized altool authentication interface')
+    return ['--type', 'osx' if platform == 'MAC_OS' else 'ios', '--apiKey', key_id, '--apiIssuer', issuer]
+
+
 def jwt_signature(der):
     """Convert OpenSSL's short P-256 DER signature to JWT's fixed-width r || s."""
     release.require(len(der) >= 8 and der[0] == 0x30 and der[1] == len(der) - 2,
@@ -216,13 +243,13 @@ class Signing:
         before = release.sha(ipa)
         # Apple's altool shim can update independently of Xcode. New versions use
         # kebab-case authentication flags and infer the platform from the IPA.
-        help_text = quiet('xcrun', 'altool', '--help')
-        auth = (['--api-key', self.key_id, '--api-issuer', self.issuer]
-                if b'--api-key <' in help_text else
-                ['--type', 'osx' if self.platform == 'MAC_OS' else 'ios',
-                 '--apiKey', self.key_id, '--apiIssuer', self.issuer])
-        quiet('xcrun', 'altool', '--upload-app', '-f', ipa, *auth,
-              env=dict(os.environ, API_PRIVATE_KEYS_DIR=str(self.directory)))
+        auth = altool_auth(self.key_id, self.issuer, self.platform)
+        print(f'Uploading {self.platform} version {self.version} build {build} to Apple', flush=True)
+        result = subprocess.run(['xcrun', 'altool', '--upload-app', '-f', str(ipa), *auth],
+                                stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+                                env=dict(os.environ, API_PRIVATE_KEYS_DIR=str(self.directory)))
+        release.require(result.returncode == 0,
+                        f'Apple {self.platform} upload failed: ' + upload_failure_summary(result.stdout + result.stderr))
         release.require(release.sha(ipa) == before, 'Artifact changed during upload')
         path = '/v1/builds?' + urllib.parse.urlencode({'filter[app]': self.app_id,
                                                      'filter[version]': build,

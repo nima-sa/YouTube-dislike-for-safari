@@ -42,6 +42,26 @@ class Safety(unittest.TestCase):
                 if name == 'Share': self.assertEqual(info['NSExtension'], extension['NSExtension'])
             self.assertEqual(plistlib.loads((root / 'Extension.plist').read_bytes()), extension)
 
+    def test_altool_detects_help_on_stderr(self):
+        from subprocess import CompletedProcess
+        modern = b'--api-key <string> --api-issuer <id>'
+        for stdout, stderr in [(modern, b''), (b'', modern)]:
+            with patch('subprocess.run', return_value=CompletedProcess([], 0, stdout=stdout, stderr=stderr)):
+                self.assertEqual(signing.altool_auth('KEY', 'ISSUER', 'IOS'),
+                                 ['--api-key', 'KEY', '--api-issuer', 'ISSUER'])
+        with patch('subprocess.run', return_value=CompletedProcess([], 0, stdout=b'--type --apiKey', stderr=b'')):
+            self.assertEqual(signing.altool_auth('KEY', 'ISSUER', 'MAC_OS')[1], 'osx')
+        with patch('subprocess.run', return_value=CompletedProcess([], 0, stdout=b'', stderr=b'unknown')):
+            with self.assertRaises(RuntimeError): signing.altool_auth('KEY', 'ISSUER', 'IOS')
+
+    def test_upload_diagnostics_do_not_echo_private_output(self):
+        raw = b'Asset validation failed: Invalid large app icon alpha channel /private/secret-path KEYVALUE person@example.org (ITMS-90717)'
+        result = signing.upload_failure_summary(raw)
+        self.assertIn('alpha channel', result)
+        self.assertIn('ITMS-90717', result)
+        for private in ['secret-path', 'KEYVALUE', 'person@example.org']:
+            self.assertNotIn(private, result)
+
     def test_versions(self):
         self.assertEqual(core.versions(),('2026.11.1','3'))
 
