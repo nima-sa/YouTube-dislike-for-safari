@@ -39,9 +39,17 @@ jobs:
           assert run.isdigit()
           source = json.loads(subprocess.check_output(['gh','api',f'repos/{os.environ["GITHUB_REPOSITORY"]}/actions/runs/{run}']))
           policy = json.load(open('release/policy.json'))
-          tag = 'v' + policy['version'] + '-build.' + policy['build']
-          exists = subprocess.run(['git','show-ref','--verify','--quiet','refs/tags/'+tag]).returncode == 0
-          if not exists: tag = 'v' + policy['version']
+          import sys
+          sys.path.insert(0, 'scripts')
+          from release_tools.automation import verify_tag_version
+          tags = subprocess.check_output(['git','tag','--points-at',source['head_sha']], text=True).splitlines()
+          candidates = []
+          for tag in tags:
+              try: verify_tag_version(tag, policy, policy)
+              except RuntimeError: continue
+              candidates.append(tag)
+          assert len(candidates) == 1, 'Expected one matching release tag for source commit'
+          tag = candidates[0]
           subprocess.run(['python3','scripts/release.py','publish','--tag',tag,
                           '--commit',source['head_sha'],'--source-run',run],check=True)
           PY

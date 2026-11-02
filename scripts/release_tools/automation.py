@@ -12,7 +12,7 @@ REPO='skar404/youtube-dislike-for-safari'
 ASSETS={'YouTube-Dislike.ipa','YouTube-Dislike-macOS.pkg','YouTube-Dislike-macOS.zip','build-manifest.json','SHA256SUMS'}
 
 def tag_name(tag):
-    core.require(isinstance(tag,str) and re.fullmatch(r'v[1-9]\d*\.(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)(?:-build\.[1-9]\d*)?',tag), 'Invalid release tag')
+    core.require(isinstance(tag,str) and re.fullmatch(r'v[1-9]\d*\.(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)(?:-build\.[1-9]\d*(?:-r[1-9]\d*)?)?',tag), 'Invalid release tag')
     return tag
 
 @contextmanager
@@ -30,7 +30,8 @@ def signature(kind,ref,env):
 def verify_tag_version(tag, tagged, current):
     tag_name(tag)
     allowed = {'v' + tagged['version'], 'v' + tagged['version'] + '-build.' + tagged['build']}
-    core.require(tag in allowed and tagged['version'] == current['version'] and tagged['build'] == current['build'],
+    retry = re.fullmatch(re.escape('v' + tagged['version'] + '-build.' + tagged['build']) + r'-r[1-9]\d*', tag)
+    core.require((tag in allowed or retry) and tagged['version'] == current['version'] and tagged['build'] == current['build'],
                  'Tag/version/build mismatch')
 
 def verify_source(tag,commit):

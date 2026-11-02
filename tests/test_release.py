@@ -25,6 +25,23 @@ class Safety(unittest.TestCase):
             _, spec=project_spec(Path('.'))
         self.assertEqual(spec['targets']['App']['settings']['base']['SWIFT_OPTIMIZATION_LEVEL'],'-O')
 
+    def test_identity_input_preserves_extension_configuration(self):
+        import plistlib
+        from release_tools.build import embed_identity
+        with tempfile.TemporaryDirectory() as d:
+            root = Path(d)
+            extension = {'NSExtension': {'NSExtensionPointIdentifier': 'com.apple.share-services'}}
+            (root / 'Extension.plist').write_bytes(plistlib.dumps(extension))
+            spec = {'targets': {'App': {'settings': {'base': {}}},
+                                'Share': {'settings': {'base': {'INFOPLIST_FILE': 'Extension.plist'}}}}}
+            embed_identity(root, spec, {'INFOPLIST_KEY_CICommit': 'a' * 40, 'INFOPLIST_KEY_CIBuild': '3'})
+            for name, target in spec['targets'].items():
+                info = plistlib.loads((root / target['settings']['base']['INFOPLIST_FILE']).read_bytes())
+                self.assertEqual(info['CICommit'], 'a' * 40)
+                self.assertEqual(info['CIBuild'], '3')
+                if name == 'Share': self.assertEqual(info['NSExtension'], extension['NSExtension'])
+            self.assertEqual(plistlib.loads((root / 'Extension.plist').read_bytes()), extension)
+
     def test_versions(self):
         self.assertEqual(core.versions(),('2026.11.1','3'))
 
@@ -47,9 +64,9 @@ class Safety(unittest.TestCase):
 
     def test_tag_version_and_build(self):
         p = {'version': '2026.11.1', 'build': '3'}
-        for tag in ['v2026.11.1', 'v2026.11.1-build.3']:
+        for tag in ['v2026.11.1', 'v2026.11.1-build.3', 'v2026.11.1-build.3-r2']:
             automation.verify_tag_version(tag, p, p)
-        for tag in ['v2026.11.1-build.4', 'v2026.11.2-build.3', 'v2026.11.1-build.03']:
+        for tag in ['v2026.11.1-build.4', 'v2026.11.2-build.3', 'v2026.11.1-build.03', 'v2026.11.1-build.4-r2', 'v2026.11.1-build.3-r02']:
             with self.assertRaises(RuntimeError): automation.verify_tag_version(tag, p, p)
         with self.assertRaises(RuntimeError):
             automation.verify_tag_version('v2026.11.1-build.3', p, {**p, 'version': '2026.11.2'})

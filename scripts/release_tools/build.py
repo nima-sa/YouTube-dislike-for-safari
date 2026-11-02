@@ -23,7 +23,8 @@ def validate_bundles(app,version,build,identity):
         info=plistlib.loads((content/'Info.plist').read_bytes())
         core.require(info['CFBundleShortVersionString']==version and info['CFBundleVersion']==build,'Built version differs')
         for key,value in identity.items():
-            core.require(str(info.get(key.removeprefix('INFOPLIST_KEY_')))==value,'Embedded CI identity differs')
+            core.require(str(info.get(key.removeprefix('INFOPLIST_KEY_')))==value,
+                         f'Embedded CI identity differs: {bundle.name} / {key.removeprefix("INFOPLIST_KEY_")}')
         binary=(content/'MacOS' if mac else content)/info['CFBundleExecutable']
         architectures=set(quiet('lipo','-archs',binary).decode().split())
         core.require(architectures==({'arm64','x86_64'} if mac else {'arm64'}),'Built architectures differ')
@@ -44,6 +45,21 @@ def project_spec(source):
         platform='iOS' if settings[0].get('SDKROOT')=='iphoneos' else 'macOS'
         targets[obj['name']]={'platform':platform,'settings':{'base':dict(release)},'_configs':settings}
     return project,{'targets':targets}
+
+
+def embed_identity(source, spec, identity):
+    # Xcode does not reliably synthesize arbitrary INFOPLIST_KEY_* settings.
+    # Supply an explicit per-target input plist before compilation and signing.
+    directory = source / 'Configs' / 'CIInfo'
+    directory.mkdir(parents=True, exist_ok=True)
+    for name, target in spec['targets'].items():
+        settings = target['settings']['base']
+        original = settings.get('INFOPLIST_FILE')
+        info = plistlib.loads((source / original).read_bytes()) if original else {}
+        info.update({key.removeprefix('INFOPLIST_KEY_'): value for key, value in identity.items()})
+        path = directory / (name + '.plist')
+        path.write_bytes(plistlib.dumps(info))
+        settings['INFOPLIST_FILE'] = str(path.relative_to(source))
 
 
 def build_release(output,commit):
@@ -69,6 +85,7 @@ def build_release(output,commit):
             ios.preflight(version,build); ios.configure(source,spec)
             store=MacStoreSigning(work/'mac-store'); signers.append(store)
             store.preflight(version,build); store.configure(source,spec)
+            embed_identity(source,spec,identity)
             for target in spec['targets'].values():
                 for settings in target['_configs']:
                     settings.update(target['settings']['base']); settings.update(identity)
