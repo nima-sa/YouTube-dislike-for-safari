@@ -12,6 +12,19 @@ sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'scripts'))
 from release_tools import core, automation, signing, macos, macos_store
 
 class Safety(unittest.TestCase):
+    def test_signing_uses_release_settings(self):
+        import plistlib
+        from release_tools.build import project_spec
+        project={'objects':{
+            'target': {'isa':'PBXNativeTarget','name':'App','buildConfigurationList':'configs'},
+            'configs': {'buildConfigurations':['debug','release']},
+            'debug': {'name':'Debug','buildSettings':{'SDKROOT':'iphoneos','SWIFT_OPTIMIZATION_LEVEL':'-Onone'}},
+            'release': {'name':'Release','buildSettings':{'SDKROOT':'iphoneos','SWIFT_OPTIMIZATION_LEVEL':'-O'}},
+        }}
+        with patch('release_tools.build.quiet',return_value=plistlib.dumps(project)):
+            _, spec=project_spec(Path('.'))
+        self.assertEqual(spec['targets']['App']['settings']['base']['SWIFT_OPTIMIZATION_LEVEL'],'-O')
+
     def test_versions(self):
         self.assertEqual(core.versions(),('2026.11.1','3'))
 

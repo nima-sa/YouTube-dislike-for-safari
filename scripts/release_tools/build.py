@@ -40,8 +40,9 @@ def project_spec(source):
         if obj.get('isa')!='PBXNativeTarget': continue
         configs=project['objects'][obj['buildConfigurationList']]['buildConfigurations']
         settings=[project['objects'][c]['buildSettings'] for c in configs]
+        release=next(project['objects'][c]['buildSettings'] for c in configs if project['objects'][c]['name']=='Release')
         platform='iOS' if settings[0].get('SDKROOT')=='iphoneos' else 'macOS'
-        targets[obj['name']]={'platform':platform,'settings':{'base':dict(settings[0])},'_configs':settings}
+        targets[obj['name']]={'platform':platform,'settings':{'base':dict(release)},'_configs':settings}
     return project,{'targets':targets}
 
 
