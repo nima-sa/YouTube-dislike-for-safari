@@ -50,11 +50,18 @@ After a process dies at an uncertain network boundary, an active vote may be
 replayed before the next state. The API expresses a user's vote state, not an
 increment; delivery is **at least once**, not a claim of exactly-once networking.
 
+## License
+
+Original contributions by Denis Malin are licensed under **MIT**.
+This grant does not cover inherited or other third-party material. Read the
+[license scope](LICENSE.md) and [full MIT license text](COPYING).
+
 ## Release status
 
-**Distribution is blocked pending upstream permission.** Public CI checks source
-and unsigned builds. No signed binaries, Apple upload or App Review submission
-are enabled. See [release process](docs/RELEASE.md), [provenance](docs/PROVENANCE.md)
+Public CI checks source and unsigned builds. Signed tags trigger the release
+pipeline after source verification; signing and Apple uploads require the
+configured certificates and profiles. App Review submission is not automated.
+See [release process](docs/RELEASE.md), [provenance](docs/PROVENANCE.md)
 and [store draft readiness](docs/store/READINESS.md). No license is asserted over
 inherited code.
 

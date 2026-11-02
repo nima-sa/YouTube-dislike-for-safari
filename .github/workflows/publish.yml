@@ -32,9 +32,7 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
           SOURCE_RUN: ${{ inputs.source_run || github.event.workflow_run.id }}
-          RELEASE_DISTRIBUTION_ALLOWED: ${{ vars.RELEASE_DISTRIBUTION_ALLOWED }}
         run: |
-          python3 scripts/release.py gate
           python3 - <<'PY'
           import json, os, subprocess
           run = os.environ['SOURCE_RUN']

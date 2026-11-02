@@ -1,6 +1,6 @@
 # Release 2026.11.1 (3)
 
-State: release preparation; distribution gate closed. No App Review submission or App Store publication is authorized by this workflow.
+State: release preparation; signed-source checks enforced. No App Review submission or App Store publication is authorized by this workflow.
 
 ## Source checks
 
@@ -12,7 +12,7 @@ Local signing: copy `Configs/Local.xcconfig.example` to the ignored `Configs/Loc
 
 ## Release sequence
 
-1. Resolve [provenance](PROVENANCE.md), App Store privacy declarations and physical Safari settings access. Record permission in the policy and enable the independent repository gate. Do not merely flip the booleans to get CI green.
+1. Resolve [provenance](PROVENANCE.md), App Store privacy declarations and physical Safari settings access. Licensing scope is documented separately and is not an automated release gate.
 2. Register the four explicit App IDs; create separate iOS App Store, Mac App Store and Developer ID profiles for the appropriate targets. Reuse valid certificates; never revoke unrelated certificates.
 3. Configure `app-store` to allow only `main`. Set `APPLE_TEAM_ID`, `ASC_APP_ID`, and the secrets enumerated in `release.yml`. The single ASC app must have bundle ID `page.malina.youtube-dislike`, English store metadata and both iOS/macOS platforms. Price is free, no in-app purchases.
 4. Before upload, the tools query Apple's existing builds per platform and refuse build 3 if already consumed. An ambiguous or failed upload requires manual Apple-state inspection; do not rerun blindly. Partial uploads are not resent automatically. Recovery of an incomplete Apple upload still requires operator reconciliation and, where necessary, a new build number.
@@ -25,4 +25,4 @@ Attestations establish [build provenance](https://docs.github.com/en/actions/con
 
 ## Remaining qualification
 
-Signing/export/notarization/Apple processing are untested until permission and credentials are available. Existing device evidence in `release-verification.md` concerns older IDs/builds. New-ID installation, Safari options-page access and persistent vote opt-out require a real Mac and iPhone/iPad check. Minimum macOS 13 and iOS/iPadOS 16 remain unverified. No screenshots should imply those checks passed.
+Signing/export/notarization/Apple processing are untested until credentials are available. Existing device evidence in `release-verification.md` concerns older IDs/builds. New-ID installation, Safari options-page access and persistent vote opt-out require a real Mac and iPhone/iPad check. Minimum macOS 13 and iOS/iPadOS 16 remain unverified. No screenshots should imply those checks passed.

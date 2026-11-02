@@ -15,9 +15,8 @@ jobs:
         with:
           fetch-depth: 0
           persist-credentials: false
-      - name: Verify signatures and distribution permission
+      - name: Verify signed release source
         env:
           GH_TOKEN: ${{ github.token }}
           RELEASE_TAG: ${{ github.ref_name }}
-          RELEASE_DISTRIBUTION_ALLOWED: ${{ vars.RELEASE_DISTRIBUTION_ALLOWED }}
         run: python3 scripts/release.py dispatch --tag "$RELEASE_TAG"

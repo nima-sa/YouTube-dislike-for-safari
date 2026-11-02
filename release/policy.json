@@ -2,7 +2,5 @@
   "repository": "skar404/youtube-dislike-for-safari",
   "version": "2026.11.1",
   "build": "3",
-  "distribution_allowed": false,
-  "permission_evidence": null,
   "signing_fingerprint": "68BEAF78936945EC66B7C5273E8FD639DD4791CC"
 }

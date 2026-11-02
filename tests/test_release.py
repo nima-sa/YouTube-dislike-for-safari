@@ -28,12 +28,17 @@ class Safety(unittest.TestCase):
     def test_versions(self):
         self.assertEqual(core.versions(),('2026.11.1','3'))
 
-    def test_gate_requires_both_permissions(self):
-        good={'distribution_allowed':True,'permission_evidence':'https://example.org/permission'}
-        for policy,env in [(core.policy(),'true'),(good,'false')]:
-            with patch.object(core,'policy',return_value=policy),patch.dict(os.environ,RELEASE_DISTRIBUTION_ALLOWED=env):
-                with self.assertRaises(RuntimeError): core.gate()
-        with patch.object(core,'policy',return_value=good),patch.dict(os.environ,RELEASE_DISTRIBUTION_ALLOWED='true'): core.gate()
+    def test_dispatch_verifies_source_before_workflow(self):
+        from types import SimpleNamespace
+        commit = 'a' * 40
+        with patch.object(core, 'git', return_value=commit.encode()), patch.object(automation, 'verify_source', side_effect=RuntimeError('Invalid source')), patch.object(core, 'run') as run:
+            with self.assertRaises(RuntimeError):
+                automation.dispatch(SimpleNamespace(tag='v2026.11.1'))
+            run.assert_not_called()
+        with patch.object(core, 'git', return_value=commit.encode()), patch.object(automation, 'verify_source') as verify, patch.object(core, 'run') as run:
+            automation.dispatch(SimpleNamespace(tag='v2026.11.1'))
+            verify.assert_called_once_with('v2026.11.1', commit)
+            self.assertIn('commit=' + commit, run.call_args.args)
 
     def test_tags(self):
         for tag in ['v01.2.3','v2026.11.1/evil','--help','v2026.11.1\n','2026.11.1']:

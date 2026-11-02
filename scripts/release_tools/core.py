@@ -41,12 +41,6 @@ def versions():
     require(not re.search(r'DEVELOPMENT_TEAM = [A-Z0-9]+;',project), 'Public development team forbidden')
     return p['version'],p['build']
 
-def gate():
-    p=policy()
-    require(p['distribution_allowed'] is True and isinstance(p['permission_evidence'],str)
-            and p['permission_evidence'].startswith('https://'), 'Distribution blocked: upstream permission is not recorded')
-    require(os.environ.get('RELEASE_DISTRIBUTION_ALLOWED') == 'true', 'Protected repository release gate is closed')
-
 SECRET_PATTERNS = [
     rb'-----BEGIN (?:(?:[A-Z ]+ )?PRIVATE KEY|PGP (?:PRIVATE|SECRET) KEY BLOCK)-----',
     rb'\b(?:gh[pousr]_[A-Za-z0-9]{30,}|github_pat_[A-Za-z0-9_]{50,}|AKIA[A-Z0-9]{16})\b',

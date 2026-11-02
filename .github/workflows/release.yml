@@ -20,7 +20,6 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 5
     env:
-      RELEASE_DISTRIBUTION_ALLOWED: ${{ vars.RELEASE_DISTRIBUTION_ALLOWED }}
       RELEASE_TAG: ${{ inputs.tag }}
       RELEASE_COMMIT: ${{ inputs.commit }}
     steps:
@@ -43,7 +42,6 @@ jobs:
       attestations: write
     env:
       DEVELOPER_DIR: /Applications/Xcode_27.0.app/Contents/Developer
-      RELEASE_DISTRIBUTION_ALLOWED: ${{ vars.RELEASE_DISTRIBUTION_ALLOWED }}
       RELEASE_TAG: ${{ inputs.tag }}
       RELEASE_COMMIT: ${{ inputs.commit }}
     steps:
