@@ -1,0 +1,64 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>YouTube Dislike — Privacy</title><style>body{font:17px/1.6 system-ui,sans-serif;max-width:760px;margin:60px auto;padding:0 24px;color:#222}a{color:#a52a24}pre{white-space:pre-wrap;font:inherit}nav{margin-bottom:32px}</style><nav><a href="./">Support</a> · <a href="privacy.html">Privacy</a></nav><main><h1>Privacy</h1><pre># Privacy
+
+YouTube Dislike uses Return YouTube Dislike (RYD), an independent third-party
+service, to retrieve estimated dislike counts and optionally submit votes.
+
+## Data sent
+
+For statistics, the extension sends the ID of the YouTube video you open to
+`https://returnyoutubedislikeapi.com/votes`.
+
+Vote submission is enabled by default and can be disabled in the Safari extension options page.
+It sends a cryptographically random installation identifier, video ID, vote
+(like, dislike or withdrawal), and proof-of-work challenge data to the same API.
+Registration occurs only when the first new vote is submitted. An authentication
+failure may replace the random identifier during one re-registration attempt.
+
+All API requests omit cookies and the HTTP referrer. Your YouTube name, Google
+account, password, video title, comments and browsing history outside the current
+video IDs are not sent by this extension. The API server necessarily sees the
+connection IP address and ordinary HTTP connection metadata. RYD is responsible
+for its own server-side processing and retention; consult
+[Return YouTube Dislike](https://returnyoutubedislike.com/).
+
+## Local data and controls
+
+`browser.storage.local` holds the random ID and registration status, submission
+preference, pending votes, retry metadata, and the most recent delivery/failure
+status (including its video ID and timestamp). This data is not synced by the
+extension. Pending votes are limited to 100 video IDs and 24 hours; expired votes
+are reported as undelivered when the background next wakes. Delivery/failure
+summaries remain until replaced; a later successful vote for the same video
+clears its previous failure summary.
+
+Disabling submission clears the pending queue, stops new submissions and attempts
+to abort in-flight requests. It does not withdraw a vote already accepted by RYD.
+Statistics still load when submission is off. Disable the extension in Safari to
+stop its API requests altogether. Uninstalling/removing extension data clears
+local storage subject to Safari&#x27;s data-management behavior; it does not guarantee
+deletion of data already retained by RYD.
+
+The extension requests `storage`, `alarms`, `activeTab`, access to the RYD API, and content
+script access to `youtube.com`, `www.youtube.com`, and `m.youtube.com`. It does not
+run on YouTube Music. There is no analytics SDK, ad SDK, native messaging bridge,
+remote executable code, or extension-operated backend.
+
+Opening the toolbar popup reads the active tab URL to identify a YouTube video
+and show its likes and estimated dislikes. Other sites are ignored; their URLs
+are not sent to RYD. This lookup does not submit a vote.
+
+## iOS share sheet
+
+The Share Extension accepts a YouTube video link explicitly shared by you. It
+sends only the extracted video ID to the RYD statistics endpoint using an
+ephemeral session without cookies or referrer. RYD also sees the IP address.
+It does not send the accompanying text, register an installation, submit votes,
+or persist the shared link or result. Closing the sheet cancels pending work.
+
+## Feedback
+
+Send feedback opens a draft in your mail app addressed to `denis@malina.page`.
+The draft includes the app/extension version and platform label, but no video
+link, installation ID, or voting history. Nothing is emailed automatically;
+you can edit or discard the draft.
+</pre></main></html>

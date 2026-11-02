@@ -1,0 +1,32 @@
+name: Source checks
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: source-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  check:
+    runs-on: xcode-27
+    timeout-minutes: 30
+    env:
+      DEVELOPER_DIR: /Applications/Xcode_27.0.app/Contents/Developer
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '22.14.0'
+      - name: Audit public tree, complete history and versions
+        run: python3 scripts/release.py check --history
+      - name: Test release boundaries
+        run: python3 -m unittest discover -s tests -p 'test_*.py' -v
+      - run: npm ci --ignore-scripts && npm test
+      - run: bash scripts/check-swift.sh
+      - run: bash scripts/check-builds.sh

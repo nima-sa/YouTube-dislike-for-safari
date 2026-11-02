@@ -1,0 +1,107 @@
+name: Signed release build
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        required: true
+        type: string
+      commit:
+        description: Exact signed 40-character source commit
+        required: true
+        type: string
+permissions:
+  contents: read
+concurrency:
+  group: apple-release
+  cancel-in-progress: false
+jobs:
+  preflight:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    env:
+      RELEASE_DISTRIBUTION_ALLOWED: ${{ vars.RELEASE_DISTRIBUTION_ALLOWED }}
+      RELEASE_TAG: ${{ inputs.tag }}
+      RELEASE_COMMIT: ${{ inputs.commit }}
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Verify before accessing environment
+        run: |
+          test "$GITHUB_SHA" = "$RELEASE_COMMIT"
+          python3 scripts/release.py verify --tag "$RELEASE_TAG" --commit "$RELEASE_COMMIT"
+  build:
+    needs: preflight
+    environment: app-store
+    runs-on: xcode-27
+    timeout-minutes: 120
+    permissions:
+      contents: read
+      id-token: write
+      attestations: write
+    env:
+      DEVELOPER_DIR: /Applications/Xcode_27.0.app/Contents/Developer
+      RELEASE_DISTRIBUTION_ALLOWED: ${{ vars.RELEASE_DISTRIBUTION_ALLOWED }}
+      RELEASE_TAG: ${{ inputs.tag }}
+      RELEASE_COMMIT: ${{ inputs.commit }}
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: ${{ inputs.commit }}
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '22.14.0'
+      - name: Repeat checks on exact source
+        run: |
+          test "$GITHUB_SHA" = "$RELEASE_COMMIT"
+          python3 scripts/release.py verify --tag "$RELEASE_TAG" --commit "$RELEASE_COMMIT"
+          python3 scripts/release.py check --history
+          python3 -m unittest discover -s tests -p 'test_*.py'
+          npm ci --ignore-scripts
+          npm test
+          bash scripts/check-swift.sh
+          bash scripts/check-builds.sh
+      - name: Sign, notarize, upload and wait for both Apple platforms
+        env:
+          APPLE_TEAM_ID: ${{ vars.APPLE_TEAM_ID }}
+          BUNDLE_ID_PREFIX: page.malina.youtube-dislike
+          ASC_APP_ID: ${{ vars.ASC_APP_ID }}
+          ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+          ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+          ASC_KEY_P8_BASE64: ${{ secrets.ASC_KEY_P8_BASE64 }}
+          APPLE_CERTIFICATE_P12_BASE64: ${{ secrets.APPLE_CERTIFICATE_P12_BASE64 }}
+          APPLE_CERTIFICATE_PASSWORD: ${{ secrets.APPLE_CERTIFICATE_PASSWORD }}
+          IOS_PROFILE_APP_BASE64: ${{ secrets.IOS_PROFILE_APP_BASE64 }}
+          IOS_PROFILE_SAFARI_BASE64: ${{ secrets.IOS_PROFILE_SAFARI_BASE64 }}
+          IOS_PROFILE_SHARE_BASE64: ${{ secrets.IOS_PROFILE_SHARE_BASE64 }}
+          MACOS_CERTIFICATE_P12_BASE64: ${{ secrets.MACOS_CERTIFICATE_P12_BASE64 }}
+          MACOS_CERTIFICATE_PASSWORD: ${{ secrets.MACOS_CERTIFICATE_PASSWORD }}
+          MACOS_PROFILE_APP_BASE64: ${{ secrets.MACOS_PROFILE_APP_BASE64 }}
+          MACOS_PROFILE_SAFARI_BASE64: ${{ secrets.MACOS_PROFILE_SAFARI_BASE64 }}
+          MACOS_INSTALLER_P12_BASE64: ${{ secrets.MACOS_INSTALLER_P12_BASE64 }}
+          MACOS_INSTALLER_PASSWORD: ${{ secrets.MACOS_INSTALLER_PASSWORD }}
+          MACOS_STORE_PROFILE_APP_BASE64: ${{ secrets.MACOS_STORE_PROFILE_APP_BASE64 }}
+          MACOS_STORE_PROFILE_SAFARI_BASE64: ${{ secrets.MACOS_STORE_PROFILE_SAFARI_BASE64 }}
+        run: python3 scripts/release.py build --tag "$RELEASE_TAG" --commit "$RELEASE_COMMIT" --output "$RUNNER_TEMP/release-output"
+      - name: Attest each public file
+        id: attest
+        uses: actions/attest-build-provenance@43d14bc2b83dec42d39ecae14e916627a18bb661
+        with:
+          subject-path: ${{ runner.temp }}/release-output/public/*
+      - name: Retain verification bundle
+        env:
+          BUNDLE_PATH: ${{ steps.attest.outputs.bundle-path }}
+        run: cp "$BUNDLE_PATH" "$RUNNER_TEMP/release-output/public/verification-bundles.jsonl"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: release-public
+          path: ${{ runner.temp }}/release-output/public/
+          if-no-files-found: error
+          retention-days: 30
+      - name: Clean private outputs
+        if: always()
+        run: rm -rf "$RUNNER_TEMP/release-output"

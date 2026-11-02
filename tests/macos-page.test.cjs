@@ -1,0 +1,23 @@
+const { test } = require('node:test');
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const { JSDOM } = require('jsdom');
+test('macOS setup displays version and settings status without video lookup', t => {
+  const dom = new JSDOM(fs.readFileSync('YouTube Dislike/Base.lproj/Main.html', 'utf8'), { runScripts: 'outside-only' });
+  t.after(() => dom.window.close());
+  const requests = [];
+  dom.window.webkit = { messageHandlers: { controller: { postMessage: body => requests.push(body) } } };
+  dom.window.eval(fs.readFileSync('YouTube Dislike/Resources/Script.js', 'utf8'));
+  const d = dom.window.document;
+  assert.equal(d.querySelector('form'), null);
+  assert.equal(requests.length, 0);
+  dom.window.receiveNative({ type: 'app', version: '1.2.0', build: '2' });
+  assert.equal(d.querySelector('#version').textContent, 'v1.2.0 (2)');
+  const mail = new URL(d.querySelector('#feedback').href);
+  assert.equal(mail.pathname, 'denis@malina.page');
+  assert.match(mail.searchParams.get('body'), /1\.2\.0 \(2\)/);
+  dom.window.receiveNative({ type: 'extension', enabled: true });
+  assert.match(d.querySelector('#extension-status').textContent, /is on/);
+  d.querySelector('#preferences').click();
+  assert.equal(requests[0].type, 'open-preferences');
+});

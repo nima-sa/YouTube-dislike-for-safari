@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>YouTube Dislike</title>
+  <link rel="stylesheet" href="popup.css">
+  <script src="popup.js" defer></script>
+</head>
+<body class="settings">
+  <header><img class="brand" src="images/icon-96.png" width="32" height="32" alt=""><h1>YouTube Dislike</h1></header>
+  <label class="setting"><span data-i18n="toggle"></span><input id="enabled" type="checkbox" role="switch" disabled></label>
+  <p id="status" role="status" aria-live="polite"></p>
+  <p id="failure" role="status" hidden></p>
+  <details><summary data-i18n="privacyTitle"></summary><p class="note" data-i18n="offNote"></p><p data-i18n="privacyStats"></p><p data-i18n="privacyVotes"></p><p data-i18n="privacyNetwork"></p>
+  <a href="https://returnyoutubedislike.com/" target="_blank" rel="noopener noreferrer" data-i18n="source"></a></details>
+  <footer><a id="feedback" target="_blank" rel="noopener noreferrer"><span data-i18n="feedback"></span><span aria-hidden="true">✉</span></a><p id="version"></p></footer>
+</body>
+</html>

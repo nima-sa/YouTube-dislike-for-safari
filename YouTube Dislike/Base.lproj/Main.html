@@ -1,20 +1,16 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-
-    <link rel="stylesheet" href="../Style.css">
-    <script src="../Script.js" defer></script>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../Style.css">
+<script src="../Script.js" defer></script>
+<title>YouTube Dislike</title>
 </head>
-<body>
-    <img src="../Icon.png" width="128" height="128" alt="YouTube Dislike Icon">
-    <p class="state-unknown">You can turn on YouTube Dislike’s extension in Safari Extensions preferences.</p>
-    <p class="state-on">YouTube Dislike’s extension is currently on. You can turn it off in Safari Extensions preferences.</p>
-    <p class="state-off">YouTube Dislike’s extension is currently off. You can turn it on in Safari Extensions preferences.</p>
-    <button class="open-preferences">Quit and Open Safari Extensions Preferences…</button>
-    <p>By Nima</p>
-</body>
-</html>
+<body><main>
+<header><img src="../Icon.png" width="56" height="56" alt=""><div><h1>YouTube Dislike</h1><p data-i18n="tagline"></p></div></header>
+<section class="card safari"><div><h2>Safari</h2><p id="extension-status" data-i18n="extensionUnknown"></p></div><button class="secondary" id="preferences" data-i18n="setup"></button></section>
+<details><summary data-i18n="privacyTitle"></summary><p data-i18n="privacy"></p><a href="https://returnyoutubedislike.com/" data-i18n="source"></a></details>
+<footer><a id="feedback"><span data-i18n="feedback"></span><svg class="mail-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg></a><p><span id="version"></span> <a id="ci" hidden></a></p></footer>
+</main></body></html>

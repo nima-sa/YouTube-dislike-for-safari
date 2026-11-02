@@ -1,0 +1,23 @@
+name: Signed tag dispatcher
+on:
+  push:
+    tags: ['v*']
+permissions:
+  contents: read
+  actions: write
+jobs:
+  dispatch:
+    if: github.event.created && !github.event.deleted
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Verify signatures and distribution permission
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ github.ref_name }}
+          RELEASE_DISTRIBUTION_ALLOWED: ${{ vars.RELEASE_DISTRIBUTION_ALLOWED }}
+        run: python3 scripts/release.py dispatch --tag "$RELEASE_TAG"

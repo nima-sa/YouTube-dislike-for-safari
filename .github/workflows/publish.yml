@@ -1,0 +1,46 @@
+name: Publish verified release
+on:
+  workflow_run:
+    workflows: ['Signed release build']
+    types: [completed]
+  workflow_dispatch:
+    inputs:
+      source_run:
+        description: Successful signed build run, no rebuilding or Apple upload
+        required: true
+        type: string
+permissions:
+  contents: read
+concurrency:
+  group: publish-release
+  cancel-in-progress: false
+jobs:
+  publish:
+    if: github.ref == 'refs/heads/main' && (github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success')
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    permissions:
+      contents: write
+      actions: read
+      attestations: read
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Verify source run and publish
+        env:
+          GH_TOKEN: ${{ github.token }}
+          SOURCE_RUN: ${{ inputs.source_run || github.event.workflow_run.id }}
+          RELEASE_DISTRIBUTION_ALLOWED: ${{ vars.RELEASE_DISTRIBUTION_ALLOWED }}
+        run: |
+          python3 scripts/release.py gate
+          python3 - <<'PY'
+          import json, os, subprocess
+          run = os.environ['SOURCE_RUN']
+          assert run.isdigit()
+          source = json.loads(subprocess.check_output(['gh','api',f'repos/{os.environ["GITHUB_REPOSITORY"]}/actions/runs/{run}']))
+          policy = json.load(open('release/policy.json'))
+          subprocess.run(['python3','scripts/release.py','publish','--tag','v'+policy['version'],
+                          '--commit',source['head_sha'],'--source-run',run],check=True)
+          PY

@@ -1,11 +1,29 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="popup.css">
-    <script type="module" src="popup.js"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>YouTube Dislike</title>
+  <link rel="stylesheet" href="popup.css">
+  <script src="popup.js" defer></script>
 </head>
-<body>
-    <strong>You excpecting sth here!?</strong>
+<body class="compact">
+  <p id="video-status" role="status" aria-live="polite"></p>
+  <div id="video-stats" class="metrics" hidden>
+    <div class="likes">
+      <div class="metric-label">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10v10H3V10h4Zm3 10h7a2 2 0 0 0 2-1.6l1.4-7A2 2 0 0 0 18.4 9H14l.6-4a2 2 0 0 0-2-2L8 10v9a1 1 0 0 0 1 1h1Z"/></svg>
+        <span id="likes-label"></span>
+      </div>
+      <strong id="video-likes"></strong>
+    </div>
+    <div class="dislikes">
+      <div class="metric-label">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><g transform="rotate(180 12 12)"><path d="M7 10v10H3V10h4Zm3 10h7a2 2 0 0 0 2-1.6l1.4-7A2 2 0 0 0 18.4 9H14l.6-4a2 2 0 0 0-2-2L8 10v9a1 1 0 0 0 1 1h1Z"/></g></svg>
+        <span id="dislikes-label"></span>
+      </div>
+      <strong id="video-dislikes"></strong>
+    </div>
+  </div>
 </body>
 </html>

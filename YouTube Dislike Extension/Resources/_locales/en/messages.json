@@ -1,10 +1,4 @@
 {
-    "extension_name": {
-        "message": "YouTube Dislike Extension",
-        "description": "YouTube dislike button"
-    },
-    "extension_description": {
-        "message": "Returns YouTube dislike count.",
-        "description": "Description of what the extension does."
-    }
+  "extension_name": { "message": "YouTube Dislike" },
+  "extension_description": { "message": "Estimated YouTube dislike counts and optional vote submission to Return YouTube Dislike." }
 }

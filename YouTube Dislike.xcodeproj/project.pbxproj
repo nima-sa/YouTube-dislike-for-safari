@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+        EE1300000000000000000001 /* BuildIdentity.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1300000000000000000003; };
+        EE1300000000000000000002 /* BuildIdentity.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1300000000000000000003; };
+		09B1922A4B04DB2B127C3BEA /* manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = 3CE0F7B9276E21B7009A4CC6 /* manifest.json */; };
+		0A9C896FA1057A68CB486E55 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F347B4D8E92655096C5A99CF /* Foundation.framework */; };
+		2173571DA762DC282D3D4F36 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4641DF0BAC453FD53105C6EB /* Foundation.framework */; };
 		3CE0F795276E21B5009A4CC6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE0F794276E21B5009A4CC6 /* AppDelegate.swift */; };
 		3CE0F799276E21B5009A4CC6 /* Main.html in Resources */ = {isa = PBXBuildFile; fileRef = 3CE0F797276E21B5009A4CC6 /* Main.html */; };
 		3CE0F79B276E21B5009A4CC6 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3CE0F79A276E21B5009A4CC6 /* Icon.png */; };
@@ -25,6 +30,23 @@
 		3CE0F7C0276E21B7009A4CC6 /* popup.html in Resources */ = {isa = PBXBuildFile; fileRef = 3CE0F7BF276E21B7009A4CC6 /* popup.html */; };
 		3CE0F7C2276E21B7009A4CC6 /* popup.css in Resources */ = {isa = PBXBuildFile; fileRef = 3CE0F7C1276E21B7009A4CC6 /* popup.css */; };
 		3CE0F7C4276E21B7009A4CC6 /* popup.js in Resources */ = {isa = PBXBuildFile; fileRef = 3CE0F7C3276E21B7009A4CC6 /* popup.js */; };
+		46C17E0564CC554E9BAAEE25 /* popup.html in Resources */ = {isa = PBXBuildFile; fileRef = 3CE0F7BF276E21B7009A4CC6 /* popup.html */; };
+		539C7FCF16753314946CD034 /* background.js in Resources */ = {isa = PBXBuildFile; fileRef = 3CE0F7BB276E21B7009A4CC6 /* background.js */; };
+		5574598F83C672BEF560E993 /* YouTubeDislikeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C5731632FA53A6E8CBA514 /* YouTubeDislikeApp.swift */; };
+		7B097B0A6DF4A52749781D62 /* popup.js in Resources */ = {isa = PBXBuildFile; fileRef = 3CE0F7C3276E21B7009A4CC6 /* popup.js */; };
+		88B7B3C090FDEFFCC7BEBBE9 /* popup.css in Resources */ = {isa = PBXBuildFile; fileRef = 3CE0F7C1276E21B7009A4CC6 /* popup.css */; };
+		94F505BA89E47E886B21778F /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25DE5BB743999668FB95362C /* ShareViewController.swift */; };
+		A38F1C65DAE3229B2134A6F1 /* VideoStatistics.swift in Sources */ = {isa = PBXBuildFile; fileRef = F488A6F815B5FCD84F5C6030 /* VideoStatistics.swift */; };
+		A9DDACA894D2DE089CADFE2E /* SafariWebExtensionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE0F7B2276E21B7009A4CC6 /* SafariWebExtensionHandler.swift */; };
+		B337DE8F98B0238B619CF8CE /* content.js in Resources */ = {isa = PBXBuildFile; fileRef = 3CE0F7BD276E21B7009A4CC6 /* content.js */; };
+		B939FBB77A56D7598A078299 /* YouTube Dislike Share.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 1E9FB79B236BCCA6FE37E4D4 /* YouTube Dislike Share.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		CF67767E3527D21B8465044C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3DD52F8FECB7CFD5D85F494A /* Assets.xcassets */; };
+		E53C80347B0DA59366AE3E44 /* YouTube Dislike iOS Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 8BDDE82A6780CAB39A659069 /* YouTube Dislike iOS Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		FA41CE28001EFA11EC78946C /* images in Resources */ = {isa = PBXBuildFile; fileRef = 3CE0F7B7276E21B7009A4CC6 /* images */; };
+		FAD26EC8A6E9B7C13B56395D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F347B4D8E92655096C5A99CF /* Foundation.framework */; };
+		FCEDE3A051F55F70301DE975 /* _locales in Resources */ = {isa = PBXBuildFile; fileRef = 3CE0F7B5276E21B7009A4CC6 /* _locales */; };
+		EE1200000000000000000001 /* settings.html in Resources */ = {isa = PBXBuildFile; fileRef = EE1200000000000000000003 /* settings.html */; };
+		EE1200000000000000000002 /* settings.html in Resources */ = {isa = PBXBuildFile; fileRef = EE1200000000000000000003 /* settings.html */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +56,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = 3CE0F7AC276E21B7009A4CC6;
 			remoteInfo = "YouTube Dislike Extension";
+		};
+		448D3310FC6863EB3165F8A7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3CE0F789276E21B5009A4CC6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C233AA26C55CFD09E6E701B3;
+			remoteInfo = "YouTube Dislike iOS Extension";
+		};
+		B9E5F1BAC41234601C94BC50 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3CE0F789276E21B5009A4CC6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8449D1D27FC5D65F369314E9;
+			remoteInfo = "YouTube Dislike Share";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -49,9 +85,24 @@
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		7E8E55F917F0DDA63AA00F08 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				E53C80347B0DA59366AE3E44 /* YouTube Dislike iOS Extension.appex in Embed App Extensions */,
+				B939FBB77A56D7598A078299 /* YouTube Dislike Share.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+        EE1300000000000000000003 /* BuildIdentity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shared/BuildIdentity.swift; sourceTree = SOURCE_ROOT; };
+		1E9FB79B236BCCA6FE37E4D4 /* YouTube Dislike Share.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "YouTube Dislike Share.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		25DE5BB743999668FB95362C /* ShareViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
 		3CE0F791276E21B5009A4CC6 /* YouTube Dislike.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "YouTube Dislike.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CE0F794276E21B5009A4CC6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3CE0F798276E21B5009A4CC6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = Base; path = ../Base.lproj/Main.html; sourceTree = "<group>"; };
@@ -75,9 +126,26 @@
 		3CE0F7C3276E21B7009A4CC6 /* popup.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = popup.js; sourceTree = "<group>"; };
 		3CE0F7C5276E21B7009A4CC6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3CE0F7C6276E21B7009A4CC6 /* YouTube_Dislike_Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = YouTube_Dislike_Extension.entitlements; sourceTree = "<group>"; };
+		3DD52F8FECB7CFD5D85F494A /* Assets.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4641DF0BAC453FD53105C6EB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		5280EA227B81C5FEBA15CB5B /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		52C5731632FA53A6E8CBA514 /* YouTubeDislikeApp.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = YouTubeDislikeApp.swift; sourceTree = "<group>"; };
+		8BDDE82A6780CAB39A659069 /* YouTube Dislike iOS Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "YouTube Dislike iOS Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C291F61B9EA36F4E090B1E71 /* YouTube Dislike iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "YouTube Dislike iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F347B4D8E92655096C5A99CF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		F488A6F815B5FCD84F5C6030 /* VideoStatistics.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = VideoStatistics.swift; sourceTree = "<group>"; };
+		EE1200000000000000000003 /* settings.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = settings.html; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		1F89D33E605CF9D137B8B1E1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FAD26EC8A6E9B7C13B56395D /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3CE0F78E276E21B5009A4CC6 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -92,15 +160,54 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D354EB2B43A90268E2C57EB6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0A9C896FA1057A68CB486E55 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E7BDE2566E8F001CCBDDBD37 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2173571DA762DC282D3D4F36 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		23A859AE97C28C9840622856 /* YouTube Dislike Share */ = {
+			isa = PBXGroup;
+			children = (
+				25DE5BB743999668FB95362C /* ShareViewController.swift */,
+				F488A6F815B5FCD84F5C6030 /* VideoStatistics.swift */,
+				5280EA227B81C5FEBA15CB5B /* Info.plist */,
+			);
+			name = "YouTube Dislike Share";
+			path = "YouTube Dislike Share";
+			sourceTree = "<group>";
+		};
+		32F1AF4A3FA7AA1CD1B15104 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				F347B4D8E92655096C5A99CF /* Foundation.framework */,
+				4641DF0BAC453FD53105C6EB /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
 		3CE0F788276E21B5009A4CC6 = {
 			isa = PBXGroup;
 			children = (
 				3CE0F793276E21B5009A4CC6 /* YouTube Dislike */,
 				3CE0F7B1276E21B7009A4CC6 /* YouTube Dislike Extension */,
 				3CE0F792276E21B5009A4CC6 /* Products */,
+				DB8E00437EF80D84A99EA744 /* YouTube Dislike iOS */,
+				B0834830FBA2B63051665043 /* Frameworks */,
+				23A859AE97C28C9840622856 /* YouTube Dislike Share */,
 			);
 			sourceTree = "<group>";
 		};
@@ -109,6 +216,9 @@
 			children = (
 				3CE0F791276E21B5009A4CC6 /* YouTube Dislike.app */,
 				3CE0F7AD276E21B7009A4CC6 /* YouTube Dislike Extension.appex */,
+				C291F61B9EA36F4E090B1E71 /* YouTube Dislike iOS.app */,
+				8BDDE82A6780CAB39A659069 /* YouTube Dislike iOS Extension.appex */,
+				1E9FB79B236BCCA6FE37E4D4 /* YouTube Dislike Share.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -158,10 +268,29 @@
 				3CE0F7BB276E21B7009A4CC6 /* background.js */,
 				3CE0F7BD276E21B7009A4CC6 /* content.js */,
 				3CE0F7BF276E21B7009A4CC6 /* popup.html */,
+				EE1200000000000000000003 /* settings.html */,
 				3CE0F7C1276E21B7009A4CC6 /* popup.css */,
 				3CE0F7C3276E21B7009A4CC6 /* popup.js */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		B0834830FBA2B63051665043 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				32F1AF4A3FA7AA1CD1B15104 /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DB8E00437EF80D84A99EA744 /* YouTube Dislike iOS */ = {
+			isa = PBXGroup;
+			children = (
+				52C5731632FA53A6E8CBA514 /* YouTubeDislikeApp.swift */,
+				3DD52F8FECB7CFD5D85F494A /* Assets.xcassets */,
+			);
+			name = "YouTube Dislike iOS";
+			path = "YouTube Dislike iOS";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -203,6 +332,60 @@
 			productReference = 3CE0F7AD276E21B7009A4CC6 /* YouTube Dislike Extension.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
+		4C724C3C4777F789E0C2C45F /* YouTube Dislike iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 460289208CA6627D4E0CB7C5 /* Build configuration list for PBXNativeTarget "YouTube Dislike iOS" */;
+			buildPhases = (
+				867360E325DEBD649F7668E3 /* Sources */,
+				1F89D33E605CF9D137B8B1E1 /* Frameworks */,
+				E07D8A42BD8D8608A6DDF14E /* Resources */,
+				7E8E55F917F0DDA63AA00F08 /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				653E5472F784EE8C9A249A42 /* PBXTargetDependency */,
+				220F2F93B91CC02A1A624DFB /* PBXTargetDependency */,
+			);
+			name = "YouTube Dislike iOS";
+			productName = "YouTube Dislike iOS";
+			productReference = C291F61B9EA36F4E090B1E71 /* YouTube Dislike iOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+		8449D1D27FC5D65F369314E9 /* YouTube Dislike Share */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5F66F62AE4E84654A10483FE /* Build configuration list for PBXNativeTarget "YouTube Dislike Share" */;
+			buildPhases = (
+				4941D19976CBD52F02A4A429 /* Sources */,
+				E7BDE2566E8F001CCBDDBD37 /* Frameworks */,
+				169DD23056BEC052E3823AA9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "YouTube Dislike Share";
+			productName = "YouTube Dislike Share";
+			productReference = 1E9FB79B236BCCA6FE37E4D4 /* YouTube Dislike Share.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		C233AA26C55CFD09E6E701B3 /* YouTube Dislike iOS Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F531F2FC3D6AB1D948CAC263 /* Build configuration list for PBXNativeTarget "YouTube Dislike iOS Extension" */;
+			buildPhases = (
+				A3A7BA328C050C756640F06E /* Sources */,
+				D354EB2B43A90268E2C57EB6 /* Frameworks */,
+				D7B9D00793C1E9A3D1988F53 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "YouTube Dislike iOS Extension";
+			productName = "YouTube Dislike iOS Extension";
+			productReference = 8BDDE82A6780CAB39A659069 /* YouTube Dislike iOS Extension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -236,11 +419,21 @@
 			targets = (
 				3CE0F790276E21B5009A4CC6 /* YouTube Dislike */,
 				3CE0F7AC276E21B7009A4CC6 /* YouTube Dislike Extension */,
+				4C724C3C4777F789E0C2C45F /* YouTube Dislike iOS */,
+				C233AA26C55CFD09E6E701B3 /* YouTube Dislike iOS Extension */,
+				8449D1D27FC5D65F369314E9 /* YouTube Dislike Share */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		169DD23056BEC052E3823AA9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3CE0F78F276E21B5009A4CC6 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -261,11 +454,36 @@
 				3CE0F7BC276E21B7009A4CC6 /* background.js in Resources */,
 				3CE0F7C2276E21B7009A4CC6 /* popup.css in Resources */,
 				3CE0F7C0276E21B7009A4CC6 /* popup.html in Resources */,
+				EE1200000000000000000001 /* settings.html in Resources */,
 				3CE0F7B8276E21B7009A4CC6 /* images in Resources */,
 				3CE0F7BA276E21B7009A4CC6 /* manifest.json in Resources */,
 				3CE0F7B6276E21B7009A4CC6 /* _locales in Resources */,
 				3CE0F7BE276E21B7009A4CC6 /* content.js in Resources */,
 				3CE0F7C4276E21B7009A4CC6 /* popup.js in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D7B9D00793C1E9A3D1988F53 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				539C7FCF16753314946CD034 /* background.js in Resources */,
+				88B7B3C090FDEFFCC7BEBBE9 /* popup.css in Resources */,
+				46C17E0564CC554E9BAAEE25 /* popup.html in Resources */,
+				EE1200000000000000000002 /* settings.html in Resources */,
+				FA41CE28001EFA11EC78946C /* images in Resources */,
+				09B1922A4B04DB2B127C3BEA /* manifest.json in Resources */,
+				FCEDE3A051F55F70301DE975 /* _locales in Resources */,
+				B337DE8F98B0238B619CF8CE /* content.js in Resources */,
+				7B097B0A6DF4A52749781D62 /* popup.js in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E07D8A42BD8D8608A6DDF14E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CF67767E3527D21B8465044C /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -277,6 +495,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3CE0F7A1276E21B5009A4CC6 /* ViewController.swift in Sources */,
+                EE1300000000000000000001 /* BuildIdentity.swift in Sources */,
 				3CE0F795276E21B5009A4CC6 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -289,13 +508,51 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4941D19976CBD52F02A4A429 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				94F505BA89E47E886B21778F /* ShareViewController.swift in Sources */,
+				A38F1C65DAE3229B2134A6F1 /* VideoStatistics.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		867360E325DEBD649F7668E3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5574598F83C672BEF560E993 /* YouTubeDislikeApp.swift in Sources */,
+                EE1300000000000000000002 /* BuildIdentity.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A3A7BA328C050C756640F06E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A9DDACA894D2DE089CADFE2E /* SafariWebExtensionHandler.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		220F2F93B91CC02A1A624DFB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "YouTube Dislike Share";
+			target = 8449D1D27FC5D65F369314E9 /* YouTube Dislike Share */;
+			targetProxy = B9E5F1BAC41234601C94BC50 /* PBXContainerItemProxy */;
+		};
 		3CE0F7B0276E21B7009A4CC6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 3CE0F7AC276E21B7009A4CC6 /* YouTube Dislike Extension */;
 			targetProxy = 3CE0F7AF276E21B7009A4CC6 /* PBXContainerItemProxy */;
+		};
+		653E5472F784EE8C9A249A42 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "YouTube Dislike iOS Extension";
+			target = C233AA26C55CFD09E6E701B3 /* YouTube Dislike iOS Extension */;
+			targetProxy = 448D3310FC6863EB3165F8A7 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -319,6 +576,69 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		0A0F66C6B9262D8C8DA208ED /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 3;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "YouTube Dislike";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 2026.11.1;
+				PRODUCT_BUNDLE_IDENTIFIER = "page.malina.youtube-dislike";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		2B7575F5EA889E040D93CCED /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 3;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "YouTube Dislike Extension/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "YouTube Dislike";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 2026.11.1;
+				PRODUCT_BUNDLE_IDENTIFIER = "page.malina.youtube-dislike.ios.extension";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 		3CE0F7C7276E21B7009A4CC6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -370,7 +690,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -425,7 +745,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
@@ -439,8 +759,8 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = "YouTube Dislike Extension/YouTube_Dislike_Extension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = V75W7V3XQ8;
+				CURRENT_PROJECT_VERSION = 3;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "YouTube Dislike Extension/Info.plist";
@@ -451,13 +771,13 @@
 					"@executable_path/../Frameworks",
 					"@executable_path/../../../../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
-				MARKETING_VERSION = 1.0;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 2026.11.1;
 				OTHER_LDFLAGS = (
 					"-framework",
 					SafariServices,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.nima.single.YouTube-Dislike.Extension";
+				PRODUCT_BUNDLE_IDENTIFIER = "page.malina.youtube-dislike.macos.extension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -470,8 +790,8 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = "YouTube Dislike Extension/YouTube_Dislike_Extension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = V75W7V3XQ8;
+				CURRENT_PROJECT_VERSION = 3;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "YouTube Dislike Extension/Info.plist";
@@ -482,13 +802,13 @@
 					"@executable_path/../Frameworks",
 					"@executable_path/../../../../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
-				MARKETING_VERSION = 1.0;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 2026.11.1;
 				OTHER_LDFLAGS = (
 					"-framework",
 					SafariServices,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.nima.single.YouTube-Dislike.Extension";
+				PRODUCT_BUNDLE_IDENTIFIER = "page.malina.youtube-dislike.macos.extension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -505,8 +825,8 @@
 				CODE_SIGN_ENTITLEMENTS = "YouTube Dislike/YouTube Dislike.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = V75W7V3XQ8;
+				CURRENT_PROJECT_VERSION = 3;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "YouTube Dislike";
@@ -517,15 +837,15 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
-				MARKETING_VERSION = 1.0;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 2026.11.1;
 				OTHER_LDFLAGS = (
 					"-framework",
 					SafariServices,
 					"-framework",
 					WebKit,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.nima.single.YouTube-Dislike";
+				PRODUCT_BUNDLE_IDENTIFIER = "page.malina.youtube-dislike";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -541,8 +861,8 @@
 				CODE_SIGN_ENTITLEMENTS = "YouTube Dislike/YouTube Dislike.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = V75W7V3XQ8;
+				CURRENT_PROJECT_VERSION = 3;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "YouTube Dislike";
@@ -553,20 +873,128 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
-				MARKETING_VERSION = 1.0;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 2026.11.1;
 				OTHER_LDFLAGS = (
 					"-framework",
 					SafariServices,
 					"-framework",
 					WebKit,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.nima.single.YouTube-Dislike";
+				PRODUCT_BUNDLE_IDENTIFIER = "page.malina.youtube-dislike";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
+		};
+		3E44AC9865CA6D8F5237594B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 3;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "YouTube Dislike";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 2026.11.1;
+				PRODUCT_BUNDLE_IDENTIFIER = "page.malina.youtube-dislike";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		6A1FAFB65ED6C9DF1D158C7E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 3;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "YouTube Dislike Share/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "YouTube Dislike";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MARKETING_VERSION = 2026.11.1;
+				PRODUCT_BUNDLE_IDENTIFIER = "page.malina.youtube-dislike.ios.share";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		88A2FAA9A7D3D1BD16471640 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 3;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "YouTube Dislike Extension/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "YouTube Dislike";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 2026.11.1;
+				PRODUCT_BUNDLE_IDENTIFIER = "page.malina.youtube-dislike.ios.extension";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		97AABE9DC96DE5610DED17EA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 3;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "YouTube Dislike Share/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "YouTube Dislike";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MARKETING_VERSION = 2026.11.1;
+				PRODUCT_BUNDLE_IDENTIFIER = "page.malina.youtube-dislike.ios.share";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
 		};
 /* End XCBuildConfiguration section */
 
@@ -594,6 +1022,33 @@
 			buildConfigurations = (
 				3CE0F7CE276E21B7009A4CC6 /* Debug */,
 				3CE0F7CF276E21B7009A4CC6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		460289208CA6627D4E0CB7C5 /* Build configuration list for PBXNativeTarget "YouTube Dislike iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0A0F66C6B9262D8C8DA208ED /* Release */,
+				3E44AC9865CA6D8F5237594B /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5F66F62AE4E84654A10483FE /* Build configuration list for PBXNativeTarget "YouTube Dislike Share" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6A1FAFB65ED6C9DF1D158C7E /* Release */,
+				97AABE9DC96DE5610DED17EA /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F531F2FC3D6AB1D948CAC263 /* Build configuration list for PBXNativeTarget "YouTube Dislike iOS Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2B7575F5EA889E040D93CCED /* Release */,
+				88A2FAA9A7D3D1BD16471640 /* Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

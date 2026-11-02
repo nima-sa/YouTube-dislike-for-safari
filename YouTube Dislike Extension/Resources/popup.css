@@ -1,15 +1,80 @@
 :root {
-    color-scheme: light dark;
+  color-scheme: light dark;
+  font: 13px/1.45 -apple-system, BlinkMacSystemFont, sans-serif;
+  --background: #ffffff;
+  --text: #202124;
+  --secondary: #686870;
+  --surface: #f2f3f5;
+  --dislikes: #fff0f1;
+  --accent: #bc2935;
+  --border: #e5e5e9;
 }
-
-body {
-    width: 100px;
-    padding: 10px;
-
-    font-family: system-ui;
-    text-align: center;
-}
-
 @media (prefers-color-scheme: dark) {
-    /* Dark Mode styles go here. */
+  :root { --background: #202124; --text: #f5f5f7; --secondary: #b4b4bd; --surface: #2e3034; --dislikes: #39292d; --accent: #ff929a; --border: #3c3d42; }
+}
+* { box-sizing: border-box; }
+html, body { width: 320px; margin: 0; background: var(--background); color: var(--text); }
+body { padding: 16px; }
+header { display: flex; align-items: center; gap: 9px; }
+.brand { width: 32px; height: 32px; border-radius: 9px; flex: none; }
+h1 { font-size: 16px; margin: 0; flex: 1; }
+#refresh { display: grid; place-items: center; width: 30px; height: 30px; flex: none; border: 0; border-radius: 8px; background: var(--surface); color: var(--accent); font: 23px/1 -apple-system, sans-serif; cursor: pointer; }
+#refresh:disabled { opacity: .5; cursor: default; }
+p { margin: 8px 0; }
+.video-card { margin: 14px 0; }
+#video-status { font-size: 12px; color: var(--secondary); }
+#video-status:empty { display: none; }
+.metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.metrics > div { border-radius: 14px; background: var(--surface); padding: 12px; }
+.metrics span { font-size: 12px; font-weight: 600; }
+.metrics strong { display: block; margin-top: 6px; font-size: 25px; line-height: 1.2; overflow-wrap: anywhere; font-variant-numeric: tabular-nums; }
+.metrics .dislikes { background: var(--dislikes); }
+.metrics .dislikes span { color: var(--accent); }
+.intro { color: var(--secondary); font-size: 11px; margin: 8px 0 0; }
+.setting { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px; background: var(--surface); border-radius: 12px; font-size: 12px; font-weight: 600; cursor: pointer; }
+input { flex: none; width: 18px; height: 18px; margin: 0; accent-color: var(--accent); cursor: pointer; }
+#status { color: var(--secondary); font-size: 11px; margin: 7px 2px 12px; }
+#failure { color: var(--accent); font-size: 11px; }
+details { border-top: 1px solid var(--border); padding-top: 11px; font-size: 12px; }
+details p { color: var(--secondary); }
+summary { cursor: pointer; font-weight: 500; }
+a { color: var(--accent); text-decoration: none; cursor: pointer; }
+details a { display: inline-block; margin: 4px 0; }
+footer { display: flex; align-items: center; justify-content: space-between; gap: 10px; border-top: 1px solid var(--border); margin-top: 12px; padding-top: 11px; }
+footer a { display: inline-flex; align-items: center; gap: 7px; font-size: 12px; }
+footer p { color: var(--secondary); font-size: 10px; margin: 0; }
+[hidden] { display: none !important; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+body.compact { padding: 12px; }
+.compact .metrics > div { padding: 13px; }
+.compact #video-status { margin: 4px; }
+body.settings { margin: 0 auto; padding: 20px; }
+.settings header { margin-bottom: 18px; }
+
+/* One restrained card pair; native Safari chrome remains outside this page. */
+.metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.metrics > div { min-width: 0; }
+.metric-label { display: flex; align-items: center; gap: 7px; }
+.metric-label svg { width: 17px; height: 17px; flex: none; fill: currentColor; }
+.dislikes .metric-label { color: var(--accent); }
+.compact .metrics > div { display: flex; flex-direction: column; justify-content: space-between; gap: 16px; min-height: 100px; }
+.compact .metrics strong { margin: 0; letter-spacing: -.035em; }
+/* iOS/iPadOS Safari uses a sheet, rather than the fixed-width Mac popover. */
+@supports (-webkit-touch-callout: none) {
+  html { width: 100%; min-width: 0; -webkit-text-size-adjust: 100%; }
+  body { width: 100%; max-width: 600px; margin-inline: auto; }
+  body.compact { padding: 16px 20px 24px; }
+  .compact .metrics { gap: 12px; }
+  .compact .metrics > div { min-height: 152px; padding: 20px; border-radius: 24px; gap: 24px; }
+  .compact .metric-label { gap: 8px; }
+  .compact .metric-label svg { width: 21px; height: 21px; }
+  .compact .metrics span { font-size: 15px; }
+  .compact .metrics strong { font-size: clamp(28px, 7.8vw, 40px); line-height: 1.1; }
+  .compact #video-status { padding: 20px; border-radius: 20px; background: var(--surface); font-size: 15px; }
+  @media (max-width: 360px) {
+    body.compact { padding-inline: 12px; }
+    .compact .metrics > div { padding: 16px; border-radius: 20px; }
+    .compact .metrics span { font-size: 13px; }
+  }
 }
