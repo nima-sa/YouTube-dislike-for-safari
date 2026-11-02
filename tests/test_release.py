@@ -70,7 +70,7 @@ class Safety(unittest.TestCase):
             with self.assertRaises(RuntimeError): core.validate_extension_id(app, bad)
 
     def test_versions(self):
-        self.assertEqual(core.versions(),('2026.11.1','3'))
+        self.assertEqual(core.versions(),('2026.11.1','4'))
 
     def test_dispatch_verifies_source_before_workflow(self):
         from types import SimpleNamespace
@@ -134,7 +134,7 @@ class Safety(unittest.TestCase):
     def test_recovery_and_tampering(self):
         with tempfile.TemporaryDirectory() as d:
             folder=Path(d)
-            manifest={'repository':automation.REPO,'commit':'a'*40,'run_id':'123','version':'2026.11.1','build':'3',
+            manifest={'repository':automation.REPO,'commit':'a'*40,'run_id':'123','version':'2026.11.1','build':'4',
                       'apple':{'IOS':{'processing_state':'VALID'},'MAC_OS':{'processing_state':'VALID'}},'macos':{'notarization_status':'Accepted'}}
             for name in automation.ASSETS-{'SHA256SUMS'}: (folder/name).write_text(json.dumps(manifest) if name=='build-manifest.json' else 'fixture')
             (folder/'SHA256SUMS').write_text(''.join(f'{core.sha(p)}  {p.name}\n' for p in sorted(folder.iterdir())))

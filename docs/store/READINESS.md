@@ -19,7 +19,7 @@ Native source inspection found no UserDefaults, file timestamp, disk-space or up
 
 ## Screenshots and manual checks
 
-Capture actual 2026.11.1 (3) interfaces with the new identifiers, in English: iPhone setup/share sheet, iPad setup/share sheet, Mac setup and Safari popup. Verify the relevant current Apple screenshot sizes before upload. No mock screenshots or old-build captures are included as release evidence.
+Capture actual 2026.11.1 (4) interfaces with the new identifiers, in English: iPhone setup/share sheet, iPad setup/share sheet, Mac setup and Safari popup. Verify the relevant current Apple screenshot sizes before upload. No mock screenshots or old-build captures are included as release evidence.
 
 The options page must be reachable in real Safari on both platforms, with opt-out persisting after close/reopen. This remains a store-readiness blocker. No new device installation or minimum-OS qualification is claimed by compilation tests.
 
