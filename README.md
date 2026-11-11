@@ -1,5 +1,7 @@
 # YouTube Dislike for Safari
 
+[![Download on the App Store](https://img.shields.io/badge/Download_on_the-App_Store-0D96F6?logo=apple&logoColor=white)](https://apps.apple.com/us/app/zorro-dislikes-for-youtube/id6829810650)
+
 Safari extension for **macOS 13+ and iOS/iPadOS 16+**. It shows the Return YouTube
 Dislike (RYD) estimate in YouTube's own dislike button, prefixed with `≈`. The
 hover tooltip gives the exact estimated value. There is no extra votes panel.
@@ -58,6 +60,8 @@ This grant does not cover inherited or other third-party material. Read the
 
 ## Release status
 
+The app is published on the App Store as
+[Zorro Dislikes for YouTube](https://apps.apple.com/us/app/zorro-dislikes-for-youtube/id6829810650).
 Public CI checks source and unsigned builds. Signed tags trigger the release
 pipeline after source verification; signing and Apple uploads require the
 configured certificates and profiles. App Review submission is not automated.
@@ -67,7 +71,8 @@ inherited code.
 
 ## Installation
 
-Open `YouTube Dislike.xcodeproj` in Xcode. Shared schemes are
+Install **Zorro Dislikes for YouTube** from the [App Store](https://apps.apple.com/us/app/zorro-dislikes-for-youtube/id6829810650).
+To build from source, open `YouTube Dislike.xcodeproj` in Xcode. Shared schemes are
 `YouTube Dislike macOS` and `YouTube Dislike iOS`. Both extension targets package
 exactly the same files from `YouTube Dislike Extension/Resources`.
 
@@ -105,9 +110,9 @@ restarts, storage failure, opt-out, timeout/retry budgets, 401/429, expiry,
 validation and popup localization. jsdom cannot manufacture trusted native input;
 the event listener is exercised with a test event, without a hook in shipped code.
 
-Builds and mocks do not establish device compatibility or App Store readiness.
+Builds and mocks do not establish device compatibility on their own.
 See [release verification](docs/release-verification.md) for live evidence and the
-remaining matrix. App Store submission and publication are separate work.
+remaining matrix.
 
 ## Privacy and protocol sources
 
